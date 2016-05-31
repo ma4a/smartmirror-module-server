@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1=title
+  h2=user
+  p Welcome to #{title}
+
+  form(action="/modules/new" method="post")
+
+	label(for="author") Author:
+    input(type="text" name="author")
+    br
+
+	label(for="description") Description:
+    input(type="text" name="description")
+    br
+    
+	label(for="name") Name:
+    input(type="text" name="name")
+    br
+
+    label(for="git") Git-URL:
+    input(type="text" name="git")
+    br
+
+	label(for="homepage") Website-Link:
+    input(type="text" name="homepage")
+    br
+
+    button(type="submit") Save

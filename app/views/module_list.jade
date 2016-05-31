@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  header
+    h1 Module list
+
+    if modules.length == 0
+      h2 No Modules
+    else
+      table
+        thead
+          tr
+            th Module
+            th Description
+            th Version
+			th Git-Link
+            th Website
+
+        tbody
+          each module in modules
+            tr
+              td
+                strong=module.name
+              td
+                p=module.description
+              td
+                time=module.version
+			  td
+				a(href=module.git) Git
+              td
+                a(href=module.url) Info
