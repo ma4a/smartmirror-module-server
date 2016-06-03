@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1=title
+  p Welcome to #{title}
+
+  p Check the details below, correct them and press save :)
+
+  form(action="/new/save" method="post")
+
+    label(for="author") Author:
+      input(type="text" name="author" value=module.author)
+      br
+
+    label(for="description") Description:
+      input(type="text" name="description" value=module.description)
+      br
+
+    label(for="name") Name:
+      input(type="text" name="name" value=module.name)
+      br
+
+    label(for="git") Git-URL:
+      input(type="text" name="git" value=module.git)
+      br
+
+    label(for="homepage") Website-Link:
+      input(type="text" name="homepage" value=module.homepage)
+      br
+
+    label(for="version") Version:
+      input(type="text" name="version" value=module.version)
+      br
+
+    button(type="submit") Save

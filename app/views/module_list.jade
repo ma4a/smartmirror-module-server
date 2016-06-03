@@ -10,22 +10,28 @@ block content
       table
         thead
           tr
+            th Author
             th Module
             th Description
             th Version
-			th Git-Link
+            th Modify date
+            th Git-Link
             th Website
 
         tbody
           each module in modules
             tr
               td
+                p=module.author
+              td
                 strong=module.name
               td
                 p=module.description
               td
                 time=module.version
-			  td
-				a(href=module.git) Git
+              td
+                p=module.updatedAt
+              td
+                a(href=module.git) GitHub-Repo
               td
                 a(href=module.url) Info

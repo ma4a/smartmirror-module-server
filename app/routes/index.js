@@ -10,6 +10,9 @@ var modulesController = require('./../controllers/modules');
 router.route('/list')
   .get(modulesController.getModules);
 
+router.route('/new/save')
+  .post(modulesController.saveModule);
+
 router.route('/new')
   .get(modulesController.getModuleCreateForm)
   .post(modulesController.createModule);
