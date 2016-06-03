@@ -8,7 +8,13 @@ var modulesController = require('./../controllers/modules');
   
 
 router.route('/list')
-  .get(modulesController.getModules);
+  .get((req, res) => {
+    modulesController.getModules()
+    .then((modules) => {
+        res.render('module_list', { modules: modules });
+    }); //.catch()
+});
+
 
 router.route('/new/save')
   .post(modulesController.saveModule);

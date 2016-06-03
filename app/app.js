@@ -33,10 +33,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 var modules = require('./routes/index');
+var api = require('./routes/api');
 
 // External:
 // Module info
 app.use('/', modules);
+app.use('/api', api);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

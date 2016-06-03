@@ -7,22 +7,11 @@ var path = require('path');
 
 exports.getModules = function (req, res) {
     /* Query for finding all users */
-    let query = Module.find({}).exec();
+    let query = Module.find({}).lean();
 
-    /* Query Promise */
-    query.then((modules) => {
-        res.render('module_list', {
-        modules: modules,
-    });
-})
-    /* Error Handling */
-    .
-    catch((err) => {
-        console.error(err);
-    res.send(404);
-})
-    ;
+    return query.exec();
 };
+
 exports.getModuleCreateForm = function (req, res) {
     res.render('module_insert', {
         title: 'SmartMirror insert new module',
