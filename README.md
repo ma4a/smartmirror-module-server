@@ -6,8 +6,6 @@ URL: [http://localhost:3333](http://localhost:3333 "")
 
 Functionality: Central collection point for all known and working SmartMirror modules. Modules can be added, modified and deleted.
 
-Purpose: Central point for collecting all available modules.
-
 API:  
 
 **/api/getModules** prints a list of all known packages in JSON
