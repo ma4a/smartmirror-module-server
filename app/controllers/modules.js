@@ -47,7 +47,7 @@ exports.saveModule = function (req, res) {
       resultMessage = 'Yeah! Module ' + req.body.name + ' saved!';
 
     }
-    res.render('module_save', {
+    res.render('module_change', {
       title: 'Module save',
       message: resultMessage,
       module: data
@@ -59,6 +59,14 @@ exports.saveModule = function (req, res) {
 };
 
 exports.deleteModuleById = function (req, res) {
+  Module.findByIdAndRemove(req.params._id, function(err, data) {
+    let resultMessage = 'The module is deleted!';
+    res.render('module_change', {
+      title: 'Module delete',
+      message: resultMessage,
+      module: data
+    });
+  });
 };
 
 exports.getModuleById = function (req, res) {
@@ -81,7 +89,7 @@ exports.updateModule = function (req, res) {
   },(err, data) => {
     console.log(data);
     let resultMessage = 'Yeah! Module ' + req.body.name + ' saved!';
-    res.render('module_save', {
+    res.render('module_change', {
       title: 'Module save',
       message: resultMessage,
       module: data
