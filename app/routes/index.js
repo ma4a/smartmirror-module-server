@@ -11,7 +11,9 @@ router.route('/list')
   .get((req, res) => {
     modulesController.getModules()
     .then((modules) => {
-      res.render('module_list', { modules: modules });
+      res.render('module_list', {
+        modules: modules
+      });
     }); //.catch()
 });
 
@@ -23,11 +25,22 @@ router.route('/new')
   .get(modulesController.getModuleCreateForm)
   .post(modulesController.createModule);
 
-router.route('/:module/delete')
+router.route('/:_id/delete')
   .get(modulesController.deleteModuleById);
 
-router.route('/:id/edit')
-  .get(modulesController.getModuleById)
+router.route('/:_id/edit')
+  .get((req, res) => {
+    modulesController.getModuleById(req)
+    .then((module) => {
+      res.render('module_update', {
+        title: 'SmartMirror edit module',
+        message: 'Edit your details and press save.',
+        module: module
+      });
+    })
+  });
+
+router.route('/edit/save')
   .post(modulesController.updateModule);
 
 /* GET landing page. */

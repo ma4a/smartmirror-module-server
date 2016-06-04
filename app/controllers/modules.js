@@ -20,12 +20,11 @@ exports.getModuleCreateForm = function (req, res) {
 
 exports.createModule = function (req, res) {
   let enhancedGitUrl = req.body.git.replace("github.com", "raw.githubusercontent.com") + '/master/package.json';
-  console.log(enhancedGitUrl);
   loadFileFromServer({url: enhancedGitUrl})
     .then((data) => {
       let modulePackage = JSON.parse(data);
       modulePackage.git = req.body.git;
-      res.render('module_update', {
+      res.render('module_create', {
         title: 'SmartMirror create module',
         module: modulePackage
       });
@@ -61,9 +60,33 @@ exports.saveModule = function (req, res) {
 
 exports.deleteModuleById = function (req, res) {
 };
+
 exports.getModuleById = function (req, res) {
+  let query = Module.findById(req.params._id).lean();
+
+  return query.exec();
 };
+
 exports.updateModule = function (req, res) {
+  console.log(req.body);
+  Module.findByIdAndUpdate(req.body._id, {
+    version: req.body.version,
+    homepage: req.body.homepage,
+    git: req.body.git,
+    name: req.body.name,
+    description: req.body.description,
+    author: req.body.author
+  },{
+    new: true
+  },(err, data) => {
+    console.log(data);
+    let resultMessage = 'Yeah! Module ' + req.body.name + ' saved!';
+    res.render('module_save', {
+      title: 'Module save',
+      message: resultMessage,
+      module: data
+    });
+  })
 };
 
 function loadFileFromServer(params) {

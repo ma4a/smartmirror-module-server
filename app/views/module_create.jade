@@ -6,7 +6,7 @@ block content
 
   p=message
 
-  form(action="/edit/save" method="post")
+  form(action="/new/save" method="post")
 
     label(for="author") Author:
       input(type="text" name="author" value=module.author)
@@ -31,7 +31,5 @@ block content
     label(for="version") Version:
       input(type="text" name="version" value=module.version)
       br
-
-    input(type="hidden" name="_id" value=module._id)
 
     button(type="submit") Save

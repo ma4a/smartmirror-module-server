@@ -17,6 +17,8 @@ block content
             th Modify date
             th Git-Link
             th Website
+            th Edit
+            th Delete
 
         tbody
           each module in modules
@@ -35,3 +37,7 @@ block content
                 a(href=module.git) GitHub-Repo
               td
                 a(href=module.url) Info
+              td
+                a(href='/' + module._id + '/edit') Edit
+              td
+                a(href='/' + module._id + '/delete') Delete
