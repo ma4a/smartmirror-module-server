@@ -7,11 +7,16 @@ var modulesController = require('./../controllers/modules');
 
 
 router.route('/getModules')
-    .get((req, res) => {
-        modulesController.getModules()
-        .then((modules) => {
-            res.json(modules);
-        });
+  .get((req, res) => {
+    modulesController.getModules()
+    .then((modules) => {
+      res.json(modules);
+    });
+});
+
+/* GET landing page. */
+router.get('/', (req, res, next) => {
+  res.json();
 });
 
 module.exports = router;

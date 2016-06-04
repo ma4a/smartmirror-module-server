@@ -11,7 +11,7 @@ router.route('/list')
   .get((req, res) => {
     modulesController.getModules()
     .then((modules) => {
-        res.render('module_list', { modules: modules });
+      res.render('module_list', { modules: modules });
     }); //.catch()
 });
 
@@ -38,16 +38,16 @@ router.get('/', (req, res, next) => {
 
   /* Query Promise */
   query.then((modules) => {
-      res.render('index', {
-        title: 'SmartMirror Module Landingpage',
-        modules: modules,
-      });
-    })
-    /* Error Handling */
-    .catch((err) => {
-      console.error(err);
-      res.send(404);
+    res.render('index', {
+      title: 'SmartMirror Module Landingpage',
+      modules: modules,
     });
+  })
+  /* Error Handling */
+  .catch((err) => {
+    console.error(err);
+    res.send(404);
+  });
 
 });
 
