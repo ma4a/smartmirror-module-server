@@ -9,7 +9,7 @@ var modulesController = require('./../controllers/modules');
 
 router.route('/list')
   .get((req, res) => {
-    modulesController.getModules()
+    modulesController.getModules(req, res)
     .then((modules) => {
       res.render('module_list', {
         modules: modules
