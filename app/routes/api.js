@@ -8,7 +8,7 @@ var modulesController = require('./../controllers/modules');
 
 router.route('/getModules')
   .get((req, res) => {
-    modulesController.getModules()
+    modulesController.getModules(req, res)
     .then((modules) => {
       res.json(modules);
     });

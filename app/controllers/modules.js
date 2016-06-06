@@ -7,7 +7,24 @@ var path = require('path');
 
 exports.getModules = function (req, res) {
   /* Query for finding all users */
-  let query = Module.find({}).lean();
+  let queryString = {};
+  let query, re;
+
+  //check if search param is set
+  if(req.query.search !== undefined) {
+    re = new RegExp(req.query.search);
+    queryString = {$or: [{'name': re}, {'description': re}]};
+  }
+
+  //check if limit param is set
+  if(req.query.limit !== undefined) {
+    query = Module.find(queryString).limit(req.query.limit).lean();
+  }
+  else {
+    query = Module.find(queryString).lean();
+  }
+
+
 
   return query.exec();
 };
