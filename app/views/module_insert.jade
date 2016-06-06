@@ -2,12 +2,10 @@ extends layout
 
 block content
   h1=title
-  p Welcome to #{title}
 
   form(action="/new" method="post")
 
     label(for="git") GitHub-URL:
       input(type="text" name="git")
-      br
 
     button(type="submit") Load more infos from GitHub
