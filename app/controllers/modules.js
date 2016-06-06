@@ -18,10 +18,10 @@ exports.getModules = function (req, res) {
 
   //check if limit param is set
   if(req.query.limit !== undefined) {
-    query = Module.find(queryString).limit(req.query.limit).lean();
+    query = Module.find(queryString).sort({'updatedAt': -1}).limit(req.query.limit).lean();
   }
   else {
-    query = Module.find(queryString).lean();
+    query = Module.find(queryString).sort({'updatedAt': -1}).lean();
   }
 
 
