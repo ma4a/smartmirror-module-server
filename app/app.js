@@ -6,11 +6,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var config = require('../config');
 
 var app = express();
 
 // MongoDB setup
-mongoose.connect('mongodb://localhost/smartmirror-modules');
+mongoose.connect(config.database);
 
 mongoose.connection.on('error',
   console.error.bind(console, 'connection error:')
