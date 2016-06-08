@@ -12,7 +12,8 @@ router.route('/list')
     modulesController.getModules(req, res)
     .then((modules) => {
       res.render('module_list', {
-        modules: modules
+        modules: modules,
+        params: req.query
       });
     }); //.catch()
 });
