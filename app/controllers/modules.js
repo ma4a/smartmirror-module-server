@@ -93,7 +93,6 @@ exports.getModuleById = function (req, res) {
 };
 
 exports.updateModule = function (req, res) {
-  console.log(req.body);
   Module.findByIdAndUpdate(req.body._id, {
     version: req.body.version,
     homepage: req.body.homepage,
@@ -104,7 +103,6 @@ exports.updateModule = function (req, res) {
   },{
     new: true
   },(err, data) => {
-    console.log(data);
     let resultMessage = 'Yeah! Module ' + req.body.name + ' saved!';
     res.render('module_change', {
       title: 'Module save',
