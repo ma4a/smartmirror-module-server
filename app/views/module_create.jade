@@ -16,13 +16,12 @@ block content
     label(for="name") Name:
       input(type="text" name="name" size=60 maxlenght=100 value=module.name)
 
-    label(for="git") Git-URL:
-      input(type="text" name="git" size=60 maxlength=100 value=module.git disabled)
-
     label(for="homepage") Website-Link:
       input(type="text" name="homepage" size=60 maxlength=100 value=module.homepage)
 
     label(for="version") Version:
       input(type="text" name="version" size=60 maxlength=15 value=module.version)
+
+    input(type="hidden" name="git" value=module.git)
 
     button(type="submit") Save
