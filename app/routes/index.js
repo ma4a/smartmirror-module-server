@@ -11,7 +11,7 @@ var auth = require('http-auth');
 /* define authentication */
 var basic = auth.basic({
   realm: "Module Server",
-  msg401: "Unauthorized access is denied ;)"
+  msg401: "Unauthorized access is denied ;) contact " + config.contactmail + " for edit and delete requests or any further assistance."
 }, function(user, pass, callback) {
    callback(user === config.user && pass === config.pass)
 });
@@ -24,6 +24,7 @@ router.route('/list')
     .then((modules) => {
       res.render('module_list', {
         modules: modules,
+        contactmail: config.contactmail,
         params: req.query
       });
     }); //.catch()
