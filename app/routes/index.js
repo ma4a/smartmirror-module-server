@@ -4,9 +4,20 @@ var express = require('express');
 var router = express.Router();
 var Module = require('./../models/modules');
 var modulesController = require('./../controllers/modules');
+var config = require('../../config');
+var auth = require('http-auth');
 
-  
 
+/* define authentication */
+var basic = auth.basic({
+  realm: "Module Server",
+  msg401: "Unauthorized access is denied ;)"
+}, function(user, pass, callback) {
+   callback(user === config.user && pass === config.pass)
+});
+
+
+/* ROUTES */
 router.route('/list')
   .get((req, res) => {
     modulesController.getModules(req, res)
@@ -18,19 +29,22 @@ router.route('/list')
     }); //.catch()
 });
 
-
+/* POST save new module */
 router.route('/new/save')
   .post(modulesController.saveModule);
 
+/* GET and POST insert new module and edit details */
 router.route('/new')
   .get(modulesController.getModuleCreateForm)
   .post(modulesController.createModule);
 
+/* GET delete module */
 router.route('/:_id/delete')
-  .get(modulesController.deleteModuleById);
+  .get(auth.connect(basic), modulesController.deleteModuleById);
 
+/* GET module edit page */
 router.route('/:_id/edit')
-  .get((req, res) => {
+  .get(auth.connect(basic), (req, res) => {
     modulesController.getModuleById(req)
     .then((module) => {
       res.render('module_update', {
@@ -41,8 +55,9 @@ router.route('/:_id/edit')
     })
   });
 
+/* POST save module edits */
 router.route('/edit/save')
-  .post(modulesController.updateModule);
+  .post(auth.connect(basic), modulesController.updateModule);
 
 /* GET landing page. */
 router.get('/', (req, res, next) => {
